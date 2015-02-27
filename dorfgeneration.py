@@ -16,18 +16,18 @@ class Dwarf(object):
 		self.family = family
 		self.age = age
 	age = random.uniform(40, 300)
-	family = familyNameDict['first'[int(random.uniform(0, len(familyNameDict['first']) + 1))]] + familyNameDict[last[int(random.uniform(0, len(familyNameDict['last']) + 1))]]
+	family = familyNameDict['first'[int(random.uniform(0, len(familyNameDict['first']) + 1))]] + familyNameDict['last'[int(random.uniform(0, len(familyNameDict['last']) + 1))]]
 
 #gender-specific classes	
 class Male(Dwarf):
 	def __init__(self, name):
 		self.name = name
-	name = maleNameDict['first'[int(random.uniform(0, len(maleNameDict['first']) + 1))]] + maleNameDict[last[int(random.uniform(0, len(maleNameDict['last']) + 1))]]
+	name = maleNameDict['first'[int(random.uniform(0, len(maleNameDict['first']) + 1))]] + maleNameDict['last'[int(random.uniform(0, len(maleNameDict['last']) + 1))]]
 
 class Female(Dwarf):
 	def __init__(self, name):
 		self.name = name
-	name = femaleNameDict['first'[int(random.uniform(0, len(femaleNameDict['first']) + 1))]] + femaleNameDict[last[int(random.uniform(0, len(femaleNameDict['last']) + 1))]]
+	name = femaleNameDict['first'[int(random.uniform(0, len(femaleNameDict['first']) + 1))]] + femaleNameDict['last'[int(random.uniform(0, len(femaleNameDict['last']) + 1))]]
 
 newDwarf = Male()
 print newDwarf.age + newDwarf.name + newDwarf.family
