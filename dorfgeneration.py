@@ -12,23 +12,18 @@ familyLast = ["son", "hammer", "forge", "reach", "crown", "kil", "rett", "mort",
 
 #generic dwarf class
 class Dwarf(object):
-	def __init__(self, family, age):
-		self.family = family
-		self.age = age
-	age = random.uniform(40, 300)
+	age = random.randint(40, 300)
 	family = random.choice(familyFirst) + random.choice(familyLast)
 
 #gender-specific classes	
 class Male(Dwarf):
-	def __init__(self, name):
-		self.name = name
 	name = random.choice(maleFirst) + random.choice(maleLast)
+	gender = "male"
 
 class Female(Dwarf):
-	def __init__(self, name):
-		self.name = name
 	name = random.choice(femaleFirst) + random.choice(femaleLast)
+	gender = "female"
 
 newDwarf = Male()
-print newDwarf.age + newDwarf.name + newDwarf.family
+print "The golems of the new Earth have created a new dwarf named", newDwarf.name, "who is the originator of the", newDwarf.family, "family, and will die when he is", newDwarf.age
 
