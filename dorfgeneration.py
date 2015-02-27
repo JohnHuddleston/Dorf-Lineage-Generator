@@ -23,5 +23,3 @@ class Female(object):
 	gender = "female"
 	age = random.randint(1, 255)
 
-
-
