@@ -10,19 +10,18 @@ femaleLast = ["a", "ah", "ka", "da", "ta", "is", "isha", "ishta", "ora", "era"]
 familyFirst = ["Iron", "Gold", "Red", "Dark", "Stone", "Anvil", "Hammer"]
 familyLast = ["son", "hammer", "forge", "reach", "crown", "kil", "rett", "mort", "sort"] 
 
-#generic dwarf class
-class Dwarf(object):
-	age = random.randint(40, 300)
-	family = random.choice(familyFirst) + random.choice(familyLast)
-
 #gender-specific classes	
-class Male(Dwarf):
+class Male(object):
 	name = random.choice(maleFirst) + random.choice(maleLast)
+	family = random.choice(familyFirst) + random.choice(familyLast)
 	gender = "male"
+	age = random.randint(1, 255)
 
-class Female(Dwarf):
+class Female(object):
 	name = random.choice(femaleFirst) + random.choice(femaleLast)
+	family = random.choice(familyFirst) + random.choice(familyLast)
 	gender = "female"
+	age = random.randint(1, 255)
 
 newDwarf = Male()
 print "The golems of the new Earth have created a new dwarf named", newDwarf.name, "who is the originator of the", newDwarf.family, "family, and will die when he is", newDwarf.age
