@@ -23,6 +23,5 @@ class Female(object):
 	gender = "female"
 	age = random.randint(1, 255)
 
-newDwarf = Male()
-print "The golems of the new Earth have created a new dwarf named", newDwarf.name, "who is the originator of the", newDwarf.family, "family, and will die when he is", newDwarf.age
+
 
