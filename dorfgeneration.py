@@ -22,4 +22,12 @@ class Female(object):
 	family = random.choice(familyFirst) + random.choice(familyLast)
 	gender = "female"
 	age = random.randint(1, 255)
+	
+def makeDorfs(num):
+	for i in range(1, num):
+		if (random.randint(0, 100) >= 50):
+			print "(Male)", random.choice(maleFirst) + random.choice(maleLast), random.choice(familyFirst) + random.choice(familyLast)
+		else:
+			print "(Female)", random.choice(femaleFirst) + random.choice(femaleLast), random.choice(familyFirst) + random.choice(familyLast)
+
 
