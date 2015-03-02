@@ -22,12 +22,18 @@ class Female(object):
 	family = random.choice(familyFirst) + random.choice(familyLast)
 	gender = "female"
 	age = random.randint(1, 255)
-	
+
+#function to generate random dwarf names, tallies by gender and shows totals upon finishing output
 def makeDorfs(num):
+	numMales = 0
+	numFemales = 0
 	for i in range(1, num):
 		if (random.randint(0, 100) >= 50):
 			print "(Male)", random.choice(maleFirst) + random.choice(maleLast), random.choice(familyFirst) + random.choice(familyLast)
+			numMales = numMales + 1
 		else:
 			print "(Female)", random.choice(femaleFirst) + random.choice(femaleLast), random.choice(familyFirst) + random.choice(familyLast)
+			numFemales = numFemales + 1
+	print "Number of females:", numFemales, ".  Number of males:", numMales
 
 
