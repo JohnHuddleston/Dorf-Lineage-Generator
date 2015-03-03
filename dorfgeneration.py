@@ -23,29 +23,43 @@ class Female(object):
 	gender = "female"
 	age = random.randint(1, 255)
 
+def rollStat():
+	roll1 = random.randint(1, 6)
+	roll2 = random.randint(1, 6)
+	roll3 = random.randint(1, 6)
+	roll4 = random.randint(1, 6)
+	if (roll1 < roll2 and roll1 < roll3 and roll1 < roll4):
+		roll1 = 0
+	elif (roll2 < roll1 and roll2 < roll3 and roll2 < roll4):
+		roll2 = 0
+	elif (roll3 < roll1 and roll3 < roll2 and roll3 < roll4):
+		roll3 = 0
+	else:
+		roll4 = 0
+	return roll1 + roll2 + roll3 + roll4
 #function to generate random dwarf names, tallies by gender and shows totals upon finishing output
 def makeDorfs(num):
 	numMales = 0
 	numFemales = 0
 	for i in range(1, num+1):
 		if (random.randint(0, 100) >= 50):
-			strength = str(random.randint(3, 18))
-			dexterity = str(random.randint(3, 18))
-			constitution = str(random.randint(3, 18))
-			intelligence = str(random.randint(3, 18))
-			wisdom = str(random.randint(3, 18))
-			charisma = str(random.randint(3, 18))
+			strength = str(rollStat())
+			dexterity = str(rollStat())
+			constitution = str(rollStat() + 2)
+			intelligence = str(rollStat())
+			wisdom = str(rollStat())
+			charisma = str(rollStat() - 2)
 			print "(Male)", random.choice(maleFirst) + random.choice(maleLast), random.choice(familyFirst) + random.choice(familyLast)
 			print "STAT BLOCK: \n Strength: %s \n Dexterity: %s \n Constitution: %s \n Intelligence: %s \n Wisdom: %s \n Charisma: %s" %(strength, dexterity, constitution, intelligence, wisdom, charisma)
 			print "*" * 15
 			numMales = numMales + 1
 		else:
-			strength = str(random.randint(3, 18))
-			dexterity = str(random.randint(3, 18))
-			constitution = str(random.randint(3, 18))
-			intelligence = str(random.randint(3, 18))
-			wisdom = str(random.randint(3, 18))
-			charisma = str(random.randint(3, 18))
+			strength = str(rollStat())
+			dexterity = str(rollStat())
+			constitution = str(rollStat() + 2)
+			intelligence = str(rollStat())
+			wisdom = str(rollStat())
+			charisma = str(rollStat() - 2)
 			print "(Female)", random.choice(femaleFirst) + random.choice(femaleLast), random.choice(familyFirst) + random.choice(familyLast)
 			print "STAT BLOCK: \n Strength: %s \n Dexterity: %s \n Constitution: %s \n Intelligence: %s \n Wisdom: %s \n Charisma: %s" %(strength, dexterity, constitution, intelligence, wisdom, charisma)
 			print "*" * 15
