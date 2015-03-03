@@ -1,6 +1,12 @@
+#Despite not wanting credit, clsr from #/g/sicp @ Rizon made this script as elegant as it is now
+
+#This software is released into public domain.
+#It is provided "as is", without warranties or conditions of any kind.
+#Anyone is free to use, modify, redistribute and do anything with this software.
+
 import random
 
-#dictionaries for names
+#arrays for names
 maleFirst = ["Ar", "Dar", "Ur", "Sur", "Lad", "Saf", "Raf", "Der", "Bo", "Gam", "Bom", "Da", "Dar", "Dan", "Khi", "Khim", "Lo", "Bel", "Rei", "Thr", "Thra", "Yur"]
 maleLast = ["ist", "ust", "all", "rall", "sohn", "tist", "tol", "dol", "far", "var", "mar", "fur", "ril", "ghâl", "in", "fin", "fir", "bur", "bir", "gar"]
 
@@ -10,62 +16,62 @@ femaleLast = ["a", "ah", "ka", "da", "ta", "is", "isha", "ishta", "ora", "era", 
 familyFirst = ["Iron", "Gold", "Red", "Dark", "Stone", "Anvil", "Hammer", "Wolf", "Barrel", "Axe", "Ash", "Amber", "Righteous", "Twilight", "White", "Wind", "Holy", "Glander", "Earth", "Emerald", "Lantern", "Cask", "Cavern"]
 familyLast = ["son", "hammer", "forge", "reach", "crown", "kil", "rett", "mort", "sort", "flask", "ale", "arm", "belt", "bringer", "sword", "kindler", "bane", "hood", "mace", "mover", "smith", "speaker"] 
 
+#rolls a MdN; e.g. d(4, 6) rolls a 4d6 and returns a list of 4 ints
+def d(m, n): 
+	return [random.randint(1, n) for i in range(m)] 
+
+#parent class
+class Dorf(object): 
+	def __init__(self):
+		self.family = random.choice(familyFirst) + random.choice(familyLast)
+		self.age = 40 + sum(d(5, 6)) # dwarf adulthood age is 40, starting age is that plus 3d6, 5d6 or 7d6 depending on class
+		self.name = None
+		self.gender = None
+		
+		self.strength = sum(sorted(d(4, 6))[1:]) # roll 4d6 and discard the lowest
+		self.dexterity = sum(sorted(d(4, 6))[1:])
+		self.constitution = sum(sorted(d(4, 6))[1:]) + 2
+		self.intelligence = sum(sorted(d(4, 6))[1:])
+		self.wisdom = sum(sorted(d(4, 6))[1:])
+		self.charisma = sum(sorted(d(4, 6))[1:]) - 2
+		
+	def __str__(self):
+		return '\n'.join([
+			'(%s) %s %s' % (self.gender, self.name, self.family),
+			'strength: %d' % self.strength,
+			'dexterity: %d' % self.dexterity,
+			'constitution: %d' % self.constitution,
+			'intelligence: %d' % self.intelligence,
+			'wisdom: %d' % self.wisdom,
+			'charisma: %d' % self.charisma,
+		]) 
+
 #gender-specific classes	
-class Male(object):
-	name = random.choice(maleFirst) + random.choice(maleLast)
-	family = random.choice(familyFirst) + random.choice(familyLast)
-	gender = "male"
-	age = random.randint(1, 255)
+class Male(Dorf):
+	def __init__(self): 
+		super(Male, self).__init__() 
+		self.name = random.choice(maleFirst) + random.choice(maleLast)
+		self.gender = "male" 
 
-class Female(object):
-	name = random.choice(femaleFirst) + random.choice(femaleLast)
-	family = random.choice(familyFirst) + random.choice(familyLast)
-	gender = "female"
-	age = random.randint(1, 255)
-
-#function for 4d6 minus the lowest roll (standard 3.5e stat method)
-def rollStat():
-	roll1 = random.randint(1, 6)
-	roll2 = random.randint(1, 6)
-	roll3 = random.randint(1, 6)
-	roll4 = random.randint(1, 6)
-	if (roll1 < roll2 and roll1 < roll3 and roll1 < roll4):
-		roll1 = 0
-	elif (roll2 < roll1 and roll2 < roll3 and roll2 < roll4):
-		roll2 = 0
-	elif (roll3 < roll1 and roll3 < roll2 and roll3 < roll4):
-		roll3 = 0
-	else:
-		roll4 = 0
-	return roll1 + roll2 + roll3 + roll4
+class Female(Dorf):
+	def __init__(self):
+		super(Female, self).__init__()
+		self.name = random.choice(femaleFirst) + random.choice(femaleLast)
+		self.gender = "female" 
 	
 #function to generate random dwarf names, tallies by gender and shows totals upon finishing output
 def makeDorfs(num):
 	numMales = 0
 	numFemales = 0
-	for i in range(1, num+1):
-		if (random.randint(0, 100) >= 50):
-			strength = str(rollStat())
-			dexterity = str(rollStat())
-			constitution = str(rollStat() + 2)
-			intelligence = str(rollStat())
-			wisdom = str(rollStat())
-			charisma = str(rollStat() - 2)
-			print "(Male)", random.choice(maleFirst) + random.choice(maleLast), random.choice(familyFirst) + random.choice(familyLast)
-			print "STAT BLOCK: \n Strength: %s \n Dexterity: %s \n Constitution: %s \n Intelligence: %s \n Wisdom: %s \n Charisma: %s" %(strength, dexterity, constitution, intelligence, wisdom, charisma)
-			print "*" * 15
+	for i in range(num): 
+		if (random.randint(0, 1) == 1): 
+			dorf = Male()
 			numMales = numMales + 1
 		else:
-			strength = str(rollStat())
-			dexterity = str(rollStat())
-			constitution = str(rollStat() + 2)
-			intelligence = str(rollStat())
-			wisdom = str(rollStat())
-			charisma = str(rollStat() - 2)
-			print "(Female)", random.choice(femaleFirst) + random.choice(femaleLast), random.choice(familyFirst) + random.choice(familyLast)
-			print "STAT BLOCK: \n Strength: %s \n Dexterity: %s \n Constitution: %s \n Intelligence: %s \n Wisdom: %s \n Charisma: %s" %(strength, dexterity, constitution, intelligence, wisdom, charisma)
-			print "*" * 15
+			dorf = Female()
 			numFemales = numFemales + 1
-	print "Number of females:", numFemales, ".  Number of males:", numMales
+		print(dorf)
+		print("*" * 15)
+	print('Number of females: %d, Number of males: %d' % (numFemales, numMales)) 
 
 
