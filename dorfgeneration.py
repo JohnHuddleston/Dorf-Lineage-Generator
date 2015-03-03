@@ -27,12 +27,28 @@ class Female(object):
 def makeDorfs(num):
 	numMales = 0
 	numFemales = 0
-	for i in range(1, num):
+	for i in range(1, num+1):
 		if (random.randint(0, 100) >= 50):
+			strength = str(random.randint(3, 18))
+			dexterity = str(random.randint(3, 18))
+			constitution = str(random.randint(3, 18))
+			intelligence = str(random.randint(3, 18))
+			wisdom = str(random.randint(3, 18))
+			charisma = str(random.randint(3, 18))
 			print "(Male)", random.choice(maleFirst) + random.choice(maleLast), random.choice(familyFirst) + random.choice(familyLast)
+			print "STAT BLOCK: \n Strength: %s \n Dexterity: %s \n Constitution: %s \n Intelligence: %s \n Wisdom: %s \n Charisma: %s" %(strength, dexterity, constitution, intelligence, wisdom, charisma)
+			print "*" * 15
 			numMales = numMales + 1
 		else:
+			strength = str(random.randint(3, 18))
+			dexterity = str(random.randint(3, 18))
+			constitution = str(random.randint(3, 18))
+			intelligence = str(random.randint(3, 18))
+			wisdom = str(random.randint(3, 18))
+			charisma = str(random.randint(3, 18))
 			print "(Female)", random.choice(femaleFirst) + random.choice(femaleLast), random.choice(familyFirst) + random.choice(familyLast)
+			print "STAT BLOCK: \n Strength: %s \n Dexterity: %s \n Constitution: %s \n Intelligence: %s \n Wisdom: %s \n Charisma: %s" %(strength, dexterity, constitution, intelligence, wisdom, charisma)
+			print "*" * 15
 			numFemales = numFemales + 1
 	print "Number of females:", numFemales, ".  Number of males:", numMales
 
