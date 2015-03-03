@@ -23,6 +23,7 @@ class Female(object):
 	gender = "female"
 	age = random.randint(1, 255)
 
+#function for 4d6 minus the lowest roll (standard 3.5e stat method)
 def rollStat():
 	roll1 = random.randint(1, 6)
 	roll2 = random.randint(1, 6)
@@ -37,6 +38,7 @@ def rollStat():
 	else:
 		roll4 = 0
 	return roll1 + roll2 + roll3 + roll4
+	
 #function to generate random dwarf names, tallies by gender and shows totals upon finishing output
 def makeDorfs(num):
 	numMales = 0
