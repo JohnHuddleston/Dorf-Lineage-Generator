@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 #Despite not wanting credit, clsr from #/g/sicp @ Rizon made this script as elegant as it is now
 
 #This software is released into public domain.
@@ -8,7 +10,7 @@ import random
 
 #arrays for names
 maleFirst = ["Ar", "Dar", "Ur", "Sur", "Lad", "Saf", "Raf", "Der", "Bo", "Gam", "Bom", "Da", "Dar", "Dan", "Khi", "Khim", "Lo", "Bel", "Rei", "Thr", "Thra", "Yur"]
-maleLast = ["ist", "ust", "all", "rall", "sohn", "tist", "tol", "dol", "far", "var", "mar", "fur", "ril", "ghâl", "in", "fin", "fir", "bur", "bir", "gar"]
+maleLast = ["ist", "ust", "all", "rall", "sohn", "tist", "tol", "dol", "far", "var", "mar", "fur", "ril", "ghal", "in", "fin", "fir", "bur", "bir", "gar"]
 
 femaleFirst = ["D", "Sir", "Sar", "Laur", "Dahl", "Mish", "Sish", "Sash", "Tam", "Cam", "Da", "Lo", "Dar", "Dash", "Hish"]
 femaleLast = ["a", "ah", "ka", "da", "ta", "is", "isha", "ishta", "ora", "era", "hilda", "theow", "gal"] 
@@ -74,4 +76,24 @@ def makeDorfs(num):
 		print("*" * 15)
 	print('Number of females: %d, Number of males: %d' % (numFemales, numMales)) 
 
+#function to concatenate str input to int with a floating point fallback conversion
+def str2int(s):
+	try:
+		ret = int(s)
+	except ValueError:
+		ret = float(s)
+	return ret	
 
+command = raw_input('Issue a command (h for help): ')
+
+if (command == "h") or (command == "H"):
+	print('h for Help' + '\n' + 'c for Create Dwarves' + '\n' + 'x or e to Exit')
+	command == raw_input('Issue a command (h for help): ')
+
+if (command == "c") or (command == "C"):
+	numIt = raw_input("How many dwarves would you like to make? ")
+	Iter = str2int(numIt)
+	makeDorfs(Iter)
+
+if (command == "e") or (command == "E") or (command == "x") or (command == "X"):
+	exit()
