@@ -92,7 +92,7 @@ while (correctInput != "E") and (correctInput != "X"):
 	correctInput = input.upper()
 
 	if (correctInput == "H"):
-		print('[H] for Help' + '\n' + '[C] for Create Dwarves' + '\n' + '[X] or [E] to Exit' + "\n" + "(Do not include brackets.")
+		print('[H] for Help' + '\n' + '[C] for Create Dwarves' + '\n' + '[X] or [E] to Exit' + "\n" + "(Do not include brackets.)")
 
 	elif (correctInput == "C"):
 		numIt = raw_input("How many dwarves would you like to make? ")
