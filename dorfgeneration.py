@@ -84,16 +84,34 @@ def str2int(s):
 		ret = float(s)
 	return ret	
 
-command = raw_input('Issue a command (h for help): ')
+correctInput = "null"
 
-if (command == "h") or (command == "H"):
-	print('h for Help' + '\n' + 'c for Create Dwarves' + '\n' + 'x or e to Exit')
-	command == raw_input('Issue a command (h for help): ')
+while (correctInput != "E") and (correctInput != "X"):
 
-if (command == "c") or (command == "C"):
-	numIt = raw_input("How many dwarves would you like to make? ")
-	Iter = str2int(numIt)
-	makeDorfs(Iter)
+	input = raw_input('Issue a command (h for help): ')
+	correctInput = input.upper()
 
-if (command == "e") or (command == "E") or (command == "x") or (command == "X"):
-	exit()
+	if (correctInput == "H"):
+		print('[H] for Help' + '\n' + '[C] for Create Dwarves' + '\n' + '[X] or [E] to Exit' + "\n" + "(Do not include brackets.")
+
+	elif (correctInput == "C"):
+		numIt = raw_input("How many dwarves would you like to make? ")
+		Iter = str2int(numIt)
+		makeDorfs(Iter)
+
+	elif (correctInput == "DEBUG"):
+		print (" ________________" + "\n"
+			   "|                |" + "\n"
+			   "|      ---       |" + "\n"
+			   "|  Nice Try Tho  |" + "\n"
+			   "|      ---       |" + "\n"
+			   "|________________|")
+
+	elif (correctInput == "E") or (correctInput == "X"):
+		break
+
+	elif (correctInput == "NULL") or (correctInput == "null"):
+		continue
+
+	else:
+		print ("Sorry, that is not a recognized command.")
